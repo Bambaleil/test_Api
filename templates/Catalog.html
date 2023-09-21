@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Catalog
+{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Каталог продуктов</h1>
+    </div>
+
+    <div>
+        <h2>Список продуктов</h2>
+        {% if products %}
+            <ul>
+                {% for product in products %}
+                    <div>
+                        <li>{{ product.title }}</li>
+                        <h2>Уроки этого продукта</h2>
+                        {% for product_lesson in product.get_all_lesson %}
+                            <ul>
+                                <li>{{ product_lesson.title }}</li>
+                            </ul>
+                        {% endfor %}
+
+                    </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            Продуктов нет
+        {% endif %}
+    </div>
+
+    <div>
+        {% if users %}
+            <ul>
+                {% for user in users %}
+                <div>
+                    <div>{{ user.username }}</div>
+                </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            юзера нет
+        {% endif %}
+    </div>
+{% endblock %}
